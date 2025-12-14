@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Tour Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #8d6e63 0%, #d7ccc8 50%, #a1887f 100%);
+            color: #3e2723;
+            overflow-x: hidden;
+            background-attachment: fixed;
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(62, 39, 35, 0.9);
+            padding: 15px 0;
+            z-index: 1000;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        nav a {
+            color: #ffcc80;
+            margin: 0 25px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: color 0.4s, transform 0.3s;
+        }
+        nav a:hover {
+            color: #ffb74d;
+            transform: scale(1.1);
+        }
+        header {
+            text-align: center;
+            padding: 150px 20px 100px;
+            background-image: url('https://cebudailynews.inquirer.net/files/2019/08/cebu1.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            border-bottom: 5px solid #5d4037;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(62, 39, 35, 0.7);
+            z-index: 1;
+        }
+        header h1 {
+            position: relative;
+            z-index: 2;
+            font-family: 'Playfair Display', serif;
+            font-size: 4em;
+            margin: 0;
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.6);
+            color: #ffcc80;
+            letter-spacing: 2px;
+        }
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8em;
+            margin-bottom: 25px;
+            color: #5d4037;
+            text-align: center;
+            border-bottom: 2px solid #a1887f;
+            padding-bottom: 10px;
+        }
+        p {
+            font-size: 1.1em;
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        .profile-hero {
+            background: rgba(245, 245, 220, 0.9);
+            padding: 70px 20px;
+            text-align: center;
+            border: 3px solid #8d6e63;
+            margin: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            transition: transform 0.4s, box-shadow 0.4s;
+            border: 5px solid #a1887f;
+        }
+        .profile-img:hover {
+            transform: scale(1.05) rotate(-2deg);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+        .profile-details {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .profile-details h3 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            color: #3e2723;
+        }
+        .profile-details p {
+            margin: 12px 0;
+            color: #5d4037;
+        }
+        section {
+            padding: 60px 20px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .section-box {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border: 2px solid #d7ccc8;
+            transition: transform 0.3s;
+        }
+        .section-box:hover {
+            transform: translateY(-5px);
+        }
+        .projects {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            justify-items: center;
+        }
+        .project {
+            background: rgba(255,255,255,0.9);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            transition: transform 0.4s, box-shadow 0.4s;
+            border: 1px solid #a1887f;
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .project:hover {
+            transform: translateY(-8px) rotate(1deg);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+        }
+        .project img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        .project img:hover {
+            opacity: 0.8;
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+        }
+        .lightbox img {
+            max-width: 85%;
+            max-height: 85%;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #ffcc80;
+            font-size: 50px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .close:hover {
+            color: #ffb74d;
+        }
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(1000px, 1fr));
+            gap: 25px;
+            justify-items: center;
+        }
+        .testimonial {
+            background: rgba(255,255,255,0.9);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            transition: transform 0.4s, box-shadow 0.4s;
+            border: 1px solid #a1887f;
+            text-align: center;
+        }
+        .testimonial:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+        }
+        .testimonial img {
+            width: 250px;
+            height: 250px;
+            border-radius: 0px; 
+            margin-bottom: 15px;
+            border: 3px solid #8d6e63;
+        }
+        .itinerary {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        .day {
+            background: rgba(255,255,255,0.9);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            transition: transform 0.4s, box-shadow 0.4s;
+            border: 1px solid #a1887f;
+            border-left: 5px solid #5d4037;
+        }
+        .day:hover {
+            transform: translateX(10px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+        }
+        .day img {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 768px) {
+            header h1 { font-size: 3em; }
+            .profile-section { flex-direction: column; align-items: center; }
+            .projects { grid-template-columns: 1fr; }
+            .testimonials { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#profile">Profile</a>
+        <a href="#about">About</a>
+        <a href="#projects">Highlights</a>
+        <a href="#journal">Journal</a>
+        <a href="#itinerary">Itinerary</a>
+    </nav>
+    
+    <header>
+        <h1>Educational Tour</h1>
+    </header>
+    
+    <div id="profile" class="profile-hero">
+        <h2>Profile</h2>
+        <div class="profile-section">
+            <img src="profile1.jpg" alt="Your Profile Photo" class="profile-img">
+            <div class="profile-details">               
+                <h3>Steven Earl Sanchez</h3>
+                <p><strong>Birthdate:</strong>February 01, 2005</p>
+                <p><strong>Email:</strong>stevenearl.sanchez@hcdc.edu.ph</p>
+                <p><strong>Phone Number:</strong>09776050497</p>
+                <p><strong>Bio:</strong> I am a 3rd-year BSIT student at Holy Cross of Davao College, focused on building strong technical skills in programming, networking, and system analysis. I actively participate in projects and hands-on learning to apply my knowledge in real-world situations. I aim to balance academic excellence with practical experience and prepare myself to become a competent IT professional.</p>
+            </div>
+        </div>      
+    </div>
+    
+    <section id="about">
+        <div class="section-box">
+            <h2>About Our Educational Tour</h2>
+            <p>The educational tour provided a meaningful learning experience through visits to historical and cultural sites in Cebu City, where we gained a deeper understanding of local history, traditions, and heritage. The adventure in Bohol complemented this learning by allowing us to explore its natural attractions, appreciate environmental conservation, and create memorable experiences. Overall, the tour successfully combined education and adventure, making the learning experience both enjoyable and enriching.</p>
+        </div>
+    </section>
+    
+    <section id="projects">
+        <div class="section-box">
+            <h2>Educational Highlights</h2>
+            <div class="projects">
+                <div class="project">
+                    <img src="magellan.jpg" alt="Cebu Exploration Photo" onclick="openLightbox(this.src)">
+                    <h3>Cebu City: Historical Sites</h3>
+                    <p>Visited Magellan's Cross.</p>
+                </div>
+                <div class="project">
+                    <img src="tarsier.jpg" alt="Group Learning Photo" onclick="openLightbox(this.src)">
+                    <h3>Bohol Tarsier Conservation Area</h3>
+                    <p>Workshops on local culture, history, and environmental awareness with expert guides.</p>
+                </div>
+                <div class="project">
+                    <img src="bohol1.jpg" alt="Bohol Adventures Photo" onclick="openLightbox(this.src)">
+                    <h3>Bohol: Natural Wonders</h3>
+                    <p>Explored Chocolate Hills.</p>
+                </div>
+                <div class="project">
+                    <img src="river.jpg" alt="Bohol River Cruise Photo" onclick="openLightbox(this.src)">
+                    <h3>Bohol River Cruise</h3>
+                    <p>Enjoyed a scenic river cruise with educational talks on local ecosystems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="journal">
+        <div class="section-box">
+            <h2>Journal</h2>
+            <div class="testimonials">
+                <div class="testimonial">
+                    <img src="rivan.jpg" alt="Alex's Avatar">
+                    <p><strong>WorldTech Information Solution</strong></p>
+                    <p>Visiting Worldtech Information Solutions in Davao helped me gain clarity about my career path as a third-year IT student who was unsure whether to focus on programming, networking, security, or cloud computing. The career counselors explained the importance of IT certifications such as ITIL, CompTIA, and Cisco, emphasizing that these are globally recognized proofs of skills, not just certificates. Hearing success stories of students who were able to work in countries like Singapore and Australia made these career goals feel more realistic and achievable.</p>
+                </div>
+                <div class="testimonial">
+                    <img src="codechum.jpg" alt="Jamie's Avatar">
+                    <p><strong>Discovering CodeChum</strong></p>
+                    <p>Discovering CodeChum has greatly improved my programming studies as a student. This Philippine-based platform, created by Cebuano programmers, fits well with the needs of Filipino learners. What makes CodeChum special is its instant feedback, allowing me to know right away if my code works, which helps me learn faster and improve my solutions. It supports self-paced learning, offers practical programming problems, and allows me to practice multiple languages like C, Python, and Java in one place. Because of this, my problem-solving and debugging skills have improved, and I have become more confident and better prepared for real-world programming.</p>
+                </div>
+                <div class="testimonial">
+                    <img src="rivanit.jpg" alt="Taylor's Avatar">
+                    <p><strong>Industry Exposure at Rivan School of Technology</strong></p>
+                    <p>Visiting Rivan IT (Rivan School of Technology) showed me what professional IT training is like beyond the classroom. Seeing their labs with real Cisco routers, switches, and enterprise equipment made me realize how important hands-on experience is in preparing for real work. The instructors shared how their global careers were made possible through proper training and certifications, and they emphasized that Filipino IT professionals are highly respected worldwide if they have the right skills and credentials. This visit helped me understand that while college provides a strong foundation, specialized training and certifications in areas like networking, cybersecurity, and cloud computing are essential to become industry-ready and competitive.</p>
+                </div>
+                <div class="testimonial">
+                    <img src="mata.jpg" alt="Sarah's Avatar">
+                    <p><strong>MATA Technologies VR Demo</strong></p>
+                    <p>Experiencing MATA Technologies’ VR and 360° tour demo gave me a glimpse of the future of technology beyond websites and mobile apps. Their virtual tour of Lubang Island made me feel like I was really there, showing how VR can be used in industries like tourism and real estate. I was inspired by how they use technology to preserve Philippine culture, support local businesses, and showcase Filipino innovation. This experience helped me realize that fields like VR, AR, and AI are real career paths and that technology can be used not only for entertainment but also to solve real-world problems and create global impact.</p>
+                </div>
+                <div class="testimonial">
+                    <img src="ndr.jpg" alt="Mike's Avatar">
+                    <p><strong>CDRRMO Command Center & E-911 Service</strong></p>
+                    <p>Visiting the CDRRMO in Bohol helped me understand how technology and preparedness play an important role in disaster management. The team explained how they monitor weather conditions, respond to emergencies, and coordinate with different agencies to ensure public safety. Seeing their operations made me realize how planning, teamwork, and the use of technology are essential in reducing disaster risks and protecting communities. This experience showed me that IT skills can also be applied in public service, especially in disaster response and risk management, where accurate information and quick communication can save lives.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="itinerary">
+        <div class="section-box">
+            <h2>Educational Itinerary</h2>
+            <p>A structured plan blending learning with exploration in Cebu City and Bohol.</p>
+            <div class="itinerary">
+                <div class="day">
+                    <img src="cebuarrival.jpg" alt="Day 1: Arrival at Cebu">
+                    <h3>Day 1: Arrival at Cebu</h3>
+                    <p>Airport pickup, hotel check-in, and introductory session on Philippine history.</p>
+                </div>
+                <div class="day">
+                    <img src="bai.jpg" alt="Day 2: Breakfast at Bai Hotel">
+                    <h3>Day 2: Breakfast at Bai Hotel</h3>
+                    <p>Enjoy a traditional breakfast, followed by cultural workshops and local market visits.</p>
+                </div>
+                <div class="day">
+                    <img src="bohol2.jpg" alt="Day 3: Arrival at Bohol">
+                    <h3>Day 3: Arrival at Bohol</h3>
+                    <p>Travel to Bohol, check into accommodation, and explore initial natural sites.</p>
+                </div>
+                <div class="day">
+                    <img src="hills.jpg" alt="Day 4: Bohol Adventures and Departure for Davao">
+                    <h3>Day 4: Bohol Adventures and Departure for Davao</h3>
+                    <p>Chocolate Hills tour, tarsier sanctuary visit, and transfer to Davao for onward journey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div id="lightbox" class="lightbox">
+        <span class="close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" src="">
+    </div>
+    
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Lightbox functionality
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+        
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
