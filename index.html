@@ -144,36 +144,35 @@
             transform: translateY(-5px);
         }
         .projects {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            justify-items: center;
-        }
-        .project {
-            background: rgba(255,255,255,0.9);
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-            transition: transform 0.4s, box-shadow 0.4s;
-            border: 1px solid #a1887f;
-            min-height: 350px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+
+.project {
+    background: rgba(255,255,255,0.9);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    transition: transform 0.4s, box-shadow 0.4s;
+    border: 1px solid #a1887f;
+    text-align: center;
+    max-width: 350px;
+}
         .project:hover {
             transform: translateY(-8px) rotate(1deg);
             box-shadow: 0 12px 30px rgba(0,0,0,0.2);
         }
         .project img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            cursor: pointer;
-            transition: opacity 0.3s;
-        }
+    width: 100%;
+    height: auto;
+    max-width: 150px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #8d6e63;
+    transition: opacity 0.3s;
+}
         .project img:hover {
             opacity: 0.8;
         }
@@ -323,6 +322,11 @@
                     <img src="river.jpg" alt="Bohol River Cruise Photo" onclick="openLightbox(this.src)">
                     <h3>Bohol River Cruise</h3>
                     <p>Enjoyed a scenic river cruise with educational talks on local ecosystems.</p>
+                </div>
+                <div class="project">
+                    <img src="cert.jpg" alt="Certificates Photo" onclick="openLightbox(this.src)">
+                    <h3>Certificate of Completion</h3>
+                    <p>World of Adventures Travel and Tours</p>
                 </div>
             </div>
         </div>
